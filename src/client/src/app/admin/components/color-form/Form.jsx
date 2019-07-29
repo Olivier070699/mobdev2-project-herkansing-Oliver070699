@@ -37,7 +37,7 @@ class Form extends Component {
 
     render() {
         const {
-            values: { name, body, synopsis, },
+            values: { name, },
             errors,
             touched,
             handleChange,
@@ -50,7 +50,7 @@ class Form extends Component {
 
         return (
             <form
-                action = '/museums'
+                action = '/colors'
               onSubmit={(e) => {
                 this.props.handleSubmit(e);
               }}
@@ -65,33 +65,6 @@ class Form extends Component {
                 value={name}
                 onChange={this.change.bind(null, "name")}
                 fullWidth
-        
-              />
-              <TextField
-                id="synopsis"
-                name="synopsis"
-                helperText={touched.synopsis ? errors.synopsis : ""}
-                error={touched.synopsis && Boolean(errors.synopsis)}
-                label="Synopsis"
-                fullWidth
-                multiline
-                rows="4"
-                value={synopsis}
-                onChange={this.change.bind(null, "synopsis")}
-        
-              />
-        
-              <TextField
-                id="body"
-                name="body"
-                helperText={touched.body ? errors.body : ""}
-                error={touched.body && Boolean(errors.body)}
-                label="Body"
-                fullWidth
-                multiline
-                rows="10"
-                value={body}
-                onChange={this.change.bind(null, "body")}
         
               />
         

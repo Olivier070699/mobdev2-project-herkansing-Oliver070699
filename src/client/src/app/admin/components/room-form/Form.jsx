@@ -37,7 +37,7 @@ class Form extends Component {
 
     render() {
         const {
-            values: { name, body, synopsis, },
+            values: { name, museums_id, room_number, },
             errors,
             touched,
             handleChange,
@@ -50,7 +50,7 @@ class Form extends Component {
 
         return (
             <form
-                action = '/museums'
+                action = '/room'
               onSubmit={(e) => {
                 this.props.handleSubmit(e);
               }}
@@ -68,32 +68,32 @@ class Form extends Component {
         
               />
               <TextField
-                id="synopsis"
-                name="synopsis"
-                helperText={touched.synopsis ? errors.synopsis : ""}
-                error={touched.synopsis && Boolean(errors.synopsis)}
-                label="Synopsis"
+                id="museums_id"
+                name="museums_id"
+                helperText={touched.museums_id ? errors.museums_id : ""}
+                error={touched.museums_id && Boolean(errors.museums_id)}
+                label="museums_id"
                 fullWidth
                 multiline
                 rows="4"
-                value={synopsis}
-                onChange={this.change.bind(null, "synopsis")}
+                value={museums_id}
+                onChange={this.change.bind(null, "museums_id")}
         
               />
         
               <TextField
-                id="body"
-                name="body"
-                helperText={touched.body ? errors.body : ""}
-                error={touched.body && Boolean(errors.body)}
-                label="Body"
+                id="room_number"
+                name="room_number"
+                helperText={touched.room_number ? errors.room_number : ""}
+                error={touched.room_number && Boolean(errors.room_number)}
+                label="room_number"
                 fullWidth
                 multiline
                 rows="10"
-                value={body}
-                onChange={this.change.bind(null, "body")}
+                value={room_number}
+                onChange={this.change.bind(null, "room_number")}
         
-              />
+                />
         
               <Button
                 type="submit"

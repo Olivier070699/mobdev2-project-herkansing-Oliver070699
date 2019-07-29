@@ -47,10 +47,10 @@ class HomePage extends Component {
         ));
         return (
             <React.Fragment>
-                <h1 className="hidden">Overzicht Grafische en Digitale Media</h1>
+                <h1 className="hidden">Overzicht musea Gent</h1>
                 <section className="section section--articles">
                     <header className="section__header">
-                        <h2 className="section__title">Museums</h2>
+                        <h2 className="section__title">Musea</h2>
                     </header>
 
                     <div className="museumsContainer">

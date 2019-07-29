@@ -1,5 +1,5 @@
 import {
-    Blog, Category, Post, User, Museums,
+    Blog, Category, Post, User, Museums, Question,
 } from './schemas';
 import Seeder from './seeder';
 
@@ -10,4 +10,5 @@ export {
     Seeder,
     User,
     Museums,
+    Question,
 };

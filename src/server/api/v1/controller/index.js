@@ -5,6 +5,10 @@ import CategoryController from './category.controller';
 import PostController from './post.controller';
 import UserController from './user.controller';
 import MuseumsController from './museums.controller';
+import QuestionController from './question.controller';
+import RoomController from './room.controller';
+import ColorController from './color.controller';
+import RegistreerController from './registreer.controller';
 
 export {
     AuthController,
@@ -13,4 +17,8 @@ export {
     PostController,
     UserController,
     MuseumsController,
+    QuestionController,
+    RoomController,
+    ColorController,
+    RegistreerController,
 };

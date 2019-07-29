@@ -37,7 +37,7 @@ class Form extends Component {
 
     render() {
         const {
-            values: { name, body, synopsis, },
+            values: { name, museums_id, rooms_id, question, imageUrl, },
             errors,
             touched,
             handleChange,
@@ -50,7 +50,7 @@ class Form extends Component {
 
         return (
             <form
-                action = '/museums'
+                action = '/question'
               onSubmit={(e) => {
                 this.props.handleSubmit(e);
               }}
@@ -68,30 +68,58 @@ class Form extends Component {
         
               />
               <TextField
-                id="synopsis"
-                name="synopsis"
-                helperText={touched.synopsis ? errors.synopsis : ""}
-                error={touched.synopsis && Boolean(errors.synopsis)}
-                label="Synopsis"
+                id="museums_id"
+                name="museums_id"
+                helperText={touched.museums_id ? errors.museums_id : ""}
+                error={touched.museums_id && Boolean(errors.museums_id)}
+                label="museums_id"
                 fullWidth
                 multiline
                 rows="4"
-                value={synopsis}
-                onChange={this.change.bind(null, "synopsis")}
+                value={museums_id}
+                onChange={this.change.bind(null, "museums_id")}
         
               />
         
               <TextField
-                id="body"
-                name="body"
-                helperText={touched.body ? errors.body : ""}
-                error={touched.body && Boolean(errors.body)}
-                label="Body"
+                id="rooms_id"
+                name="rooms_id"
+                helperText={touched.rooms_id ? errors.rooms_id : ""}
+                error={touched.rooms_id && Boolean(errors.rooms_id)}
+                label="rooms_id"
                 fullWidth
                 multiline
                 rows="10"
-                value={body}
-                onChange={this.change.bind(null, "body")}
+                value={rooms_id}
+                onChange={this.change.bind(null, "rooms_id")}
+        
+                />
+                
+                <TextField
+                id="question"
+                name="question"
+                helperText={touched.question ? errors.question : ""}
+                error={touched.question && Boolean(errors.question)}
+                label="question"
+                fullWidth
+                multiline
+                rows="10"
+                value={question}
+                onChange={this.change.bind(null, "question")}
+        
+                />
+                
+                <TextField
+                id="imageUrl"
+                name="imageUrl"
+                helperText={touched.imageUrl ? errors.imageUrl : ""}
+                error={touched.imageUrl && Boolean(errors.imageUrl)}
+                label="imageUrl"
+                fullWidth
+                multiline
+                rows="10"
+                value={imageUrl}
+                onChange={this.change.bind(null, "imageUrl")}
         
               />
         
