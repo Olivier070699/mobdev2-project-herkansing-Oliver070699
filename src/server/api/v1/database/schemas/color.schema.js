@@ -7,6 +7,9 @@ const { Schema } = mongoose;
 const ColorSchema = new Schema(
     {
         name: { type: String, required: true, max: 128 },
+        slug: {
+            type: String, lowercase: true, unique: true, required: true,
+        },
         published_at: { type: Date, required: false },
         deleted_at: { type: Date, required: false },
     },

@@ -7,6 +7,9 @@ const { Schema } = mongoose;
 const RoomSchema = new Schema(
     {
         name: { type: String, required: true, max: 128 },
+        slug: {
+            type: String, lowercase: true, unique: true, required: true,
+        },
         museums_id: { type: Number, required: true },
         room_number: { type: Number, required: true },
         published_at: { type: Date, required: false },

@@ -8,7 +8,6 @@ import MuseumsController from './museums.controller';
 import QuestionController from './question.controller';
 import RoomController from './room.controller';
 import ColorController from './color.controller';
-import RegistreerController from './registreer.controller';
 
 export {
     AuthController,
@@ -20,5 +19,4 @@ export {
     QuestionController,
     RoomController,
     ColorController,
-    RegistreerController,
 };

@@ -17,6 +17,10 @@ import HomeIcon from '@material-ui/icons/Home';
 import PeopleIcon from '@material-ui/icons/People';
 import DnsRoundedIcon from '@material-ui/icons/DnsRounded';
 import PermMediaOutlinedIcon from '@material-ui/icons/PhotoSizeSelectActual';
+import InvertColors from '@material-ui/icons/InvertColors';
+import AccountBalance from '@material-ui/icons/AccountBalance'
+import ListAlt from '@material-ui/icons/ListAlt';
+import Room from '@material-ui/icons/Room';
 import PublicIcon from '@material-ui/icons/Public';
 import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
 import SettingsInputComponentIcon from '@material-ui/icons/SettingsInputComponent';
@@ -31,10 +35,10 @@ const categories = [
       { id: 'Blogs', icon: <PermMediaOutlinedIcon />, link: '/admin/blogs' },
       { id: 'Categories', icon: <DnsRoundedIcon />, link: '/admin/categories' },
       { id: 'Posts', icon: <PeopleIcon />, link: '/admin/posts' },
-      { id: 'Museums', link: '/admin/museums' },
-      { id: 'Rooms', link: '/admin/rooms' },
-      { id: 'Questions', link: '/admin/questions' },
-      { id: 'Colors', link: '/admin/colors' },
+      { id: 'Museums', icon: <AccountBalance />, link: '/admin/museums' },
+      { id: 'Rooms', icon: <Room />, link: '/admin/rooms' },
+      { id: 'Questions', icon: <ListAlt />, link: '/admin/questions' },
+      { id: 'Colors', icon: <InvertColors />, link: '/admin/colors' },
     ],
   },
 ];
