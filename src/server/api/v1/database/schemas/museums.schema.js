@@ -25,7 +25,7 @@ const MuseumsSchema = new Schema(
 );
 
 MuseumsSchema.methods.slugify = function () {
-    this.slug = slug(this.title);
+    this.slug = slug(this.name);
 };
 
 MuseumsSchema.pre('validate', function (next) {

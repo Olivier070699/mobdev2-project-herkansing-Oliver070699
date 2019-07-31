@@ -4,9 +4,10 @@ import slug from 'slug';
 
 const { Schema } = mongoose;
 
-const ColorSchema = new Schema(
+const AnswerSchema = new Schema(
     {
-        name: { type: String, required: true, max: 128 },
+        parentQuestionId: { type: Schema.Types.ObjectId, ref: 'Question', required: true },
+        answer: { type: Number, required: true, max: 128 },
         slug: {
             type: String, lowercase: true, unique: true, required: true,
         },
@@ -22,18 +23,18 @@ const ColorSchema = new Schema(
     },
 );
 
-ColorSchema.methods.slugify = function () {
-    this.slug = slug(this.name);
+AnswerSchema.methods.slugify = function () {
+    this.slug = slug(this.answer);
 };
 
-ColorSchema.pre('validate', function (next) {
+AnswerSchema.pre('validate', function (next) {
     if (!this.slug) {
         this.slugify();
     }
     return next();
 });
 
-ColorSchema.virtual('id').get(function () { return this._id; });
+AnswerSchema.virtual('id').get(function () { return this._id; });
 
-ColorSchema.plugin(mongoosePaginate);
-export default mongoose.model('Color', ColorSchema);
+AnswerSchema.plugin(mongoosePaginate);
+export default mongoose.model('Answer', AnswerSchema);

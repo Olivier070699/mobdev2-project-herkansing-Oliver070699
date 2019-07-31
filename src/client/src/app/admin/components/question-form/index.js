@@ -23,10 +23,10 @@ Validation
 */
 const validationSchema = Yup.object(
 {
-    name: Yup.string("Enter a name").required("Title is required").min(10).max(128),
     museums_id: Yup.number("Enter a museum").required("Museum is required"),
-    rooms_id: Yup.number("Enter a room").required("room is required"),
+    room: Yup.number("Enter a room").required("room is required"),
     question: Yup.string("Enter a question").required("Question is required").min(10),
+    answer: Yup.string("Enter the answer").required("Answer is required").min(3),
     imageUrl: Yup.string("Enter a image").required(false),
 });
 
@@ -53,7 +53,7 @@ class QuestionForm extends Component {
     }
     
     state = {
-        post: { name: "", museums_id: "", rooms_id: "", question: "", imageUrl: "", },
+        post: { parentMuseumId: "", room: "", question: "", answer: "", imageUrl: "", },
     };
 
     componentWillMount() {

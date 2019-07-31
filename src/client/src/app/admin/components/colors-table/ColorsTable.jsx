@@ -160,8 +160,6 @@ class ColorsTable extends Component {
             <TableHead>
               <TableRow>
                 <TableCell>Name</TableCell>
-                <TableCell>Synopsis</TableCell>
-                <TableCell>Body</TableCell>
                 <TableCell>Created</TableCell>
                 <TableCell>Actions</TableCell>
               </TableRow>

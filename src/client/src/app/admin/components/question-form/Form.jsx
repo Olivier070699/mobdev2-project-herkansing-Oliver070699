@@ -37,7 +37,7 @@ class Form extends Component {
 
     render() {
         const {
-            values: { name, museums_id, rooms_id, question, imageUrl, },
+            values: { parentMuseumId, room, question, answer, imageUrl, },
             errors,
             touched,
             handleChange,
@@ -57,41 +57,30 @@ class Form extends Component {
               method="POST"
           >
               <TextField
-                id="name"
-                name="name"
-                helperText={touched.name ? errors.name : ""}
-                error={touched.name && Boolean(errors.name)}
-                label="name"
-                value={name}
-                onChange={this.change.bind(null, "name")}
-                fullWidth
-        
-              />
-              <TextField
-                id="museums_id"
-                name="museums_id"
-                helperText={touched.museums_id ? errors.museums_id : ""}
-                error={touched.museums_id && Boolean(errors.museums_id)}
-                label="museums_id"
+                id="parentMuseumId"
+                name="parentMuseumId"
+                helperText={touched.parentMuseumId ? errors.parentMuseumId : ""}
+                error={touched.parentMuseumId && Boolean(errors.parentMuseumId)}
+                label="museums"
                 fullWidth
                 multiline
                 rows="4"
-                value={museums_id}
-                onChange={this.change.bind(null, "museums_id")}
+                value={parentMuseumId}
+                onChange={this.change.bind(null, "parentMuseumId")}
         
               />
         
               <TextField
-                id="rooms_id"
-                name="rooms_id"
-                helperText={touched.rooms_id ? errors.rooms_id : ""}
-                error={touched.rooms_id && Boolean(errors.rooms_id)}
-                label="rooms_id"
+                id="room"
+                name="room"
+                helperText={touched.room ? errors.room : ""}
+                error={touched.room && Boolean(errors.room)}
+                label="room"
                 fullWidth
                 multiline
                 rows="10"
-                value={rooms_id}
-                onChange={this.change.bind(null, "rooms_id")}
+                value={room}
+                onChange={this.change.bind(null, "room")}
         
                 />
                 
@@ -106,6 +95,20 @@ class Form extends Component {
                 rows="10"
                 value={question}
                 onChange={this.change.bind(null, "question")}
+        
+                />
+                
+                <TextField
+                id="answer"
+                name="answer"
+                helperText={touched.question ? errors.question : ""}
+                error={touched.question && Boolean(errors.question)}
+                label="answer"
+                fullWidth
+                multiline
+                rows="10"
+                value={answer}
+                onChange={this.change.bind(null, "answer")}
         
                 />
                 

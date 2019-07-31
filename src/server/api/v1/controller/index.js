@@ -6,6 +6,7 @@ import PostController from './post.controller';
 import UserController from './user.controller';
 import MuseumsController from './museums.controller';
 import QuestionController from './question.controller';
+import AnswerController from './answer.controller';
 import RoomController from './room.controller';
 import ColorController from './color.controller';
 
@@ -17,6 +18,7 @@ export {
     UserController,
     MuseumsController,
     QuestionController,
+    AnswerController,
     RoomController,
     ColorController,
 };

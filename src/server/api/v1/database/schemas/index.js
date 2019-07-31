@@ -5,6 +5,7 @@ import Post from './post.schema';
 import User from './user.schema';
 import Museums from './museums.schema';
 import Question from './question.schema';
+import Answer from './answer.schema';
 import Room from './room.schema';
 import Color from './color.schema';
 
@@ -15,6 +16,7 @@ export {
     User,
     Museums,
     Question,
+    Answer,
     Room,
     Color,
 };

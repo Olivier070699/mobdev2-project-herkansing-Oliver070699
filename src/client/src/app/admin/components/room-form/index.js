@@ -23,9 +23,7 @@ Validation
 */
 const validationSchema = Yup.object(
 {
-    name: Yup.string("Enter a name").required("Title is required").min(10).max(128),
-    museums_id: Yup.number("Enter a museum").required("Museum is required"),
-    room_number: Yup.number("Enter a room").required("room is required"),
+    name: Yup.string("Enter a name").required("Roomname is required").min(3).max(20),
 });
 
 /*
@@ -51,7 +49,7 @@ class RoomForm extends Component {
     }
     
     state = {
-        post: { name: "", museums_id: "", room_number: "", },
+        post: { name: "", },
     };
 
     componentWillMount() {

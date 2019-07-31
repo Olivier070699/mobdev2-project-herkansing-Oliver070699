@@ -6,13 +6,13 @@ const { Schema } = mongoose;
 
 const QuestionSchema = new Schema(
     {
-        name: { type: String, required: true, max: 128 },
+        parentMuseumId: { type: Schema.Types.ObjectId, ref: 'Museums', required: true },
+        room: { type: Number, required: true },
+        question: { type: String, required: true },
         slug: {
             type: String, lowercase: true, unique: true, required: true,
         },
-        museums_id: { type: Number, required: true },
-        room_id: { type: Number, required: true },
-        question: { type: String, required: true },
+        answer: { type: String, required: true },
         imageUrl: { type: String, required: true },
         published_at: { type: Date, required: false },
         deleted_at: { type: Date, required: false },
@@ -27,7 +27,7 @@ const QuestionSchema = new Schema(
 );
 
 QuestionSchema.methods.slugify = function () {
-    this.slug = slug(this.title);
+    this.slug = slug(this.question);
 };
 
 QuestionSchema.pre('validate', function (next) {

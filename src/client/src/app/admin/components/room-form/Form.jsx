@@ -37,7 +37,7 @@ class Form extends Component {
 
     render() {
         const {
-            values: { name, museums_id, room_number, },
+            values: { name, },
             errors,
             touched,
             handleChange,
@@ -67,33 +67,6 @@ class Form extends Component {
                 fullWidth
         
               />
-              <TextField
-                id="museums_id"
-                name="museums_id"
-                helperText={touched.museums_id ? errors.museums_id : ""}
-                error={touched.museums_id && Boolean(errors.museums_id)}
-                label="museums_id"
-                fullWidth
-                multiline
-                rows="4"
-                value={museums_id}
-                onChange={this.change.bind(null, "museums_id")}
-        
-              />
-        
-              <TextField
-                id="room_number"
-                name="room_number"
-                helperText={touched.room_number ? errors.room_number : ""}
-                error={touched.room_number && Boolean(errors.room_number)}
-                label="room_number"
-                fullWidth
-                multiline
-                rows="10"
-                value={room_number}
-                onChange={this.change.bind(null, "room_number")}
-        
-                />
         
               <Button
                 type="submit"

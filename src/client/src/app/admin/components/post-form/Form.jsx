@@ -44,7 +44,7 @@ class Form extends Component {
             handleSubmit,
             isValid,
             setFieldTouched,
-            categories,
+            categories, //museums
             classes
         } = this.props;
 
@@ -98,17 +98,17 @@ class Form extends Component {
                 <InputLabel htmlFor="categoryId">Category</InputLabel>
                 <Select
                   className={classes.selectCategories}
-                  value={categoryId}
-                  onChange={this.change.bind(null, "category")}
+                  value={categoryId} // museumid
+                  onChange={this.change.bind(null, "category")} //museum?
                   inputProps={{
-                    name: 'categoryId',
-                    id: 'categoryId',
+                    name: 'categoryId', //museumid
+                    id: 'categoryId', //museumid
                   }}
                 >
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  {categories && categories.map((category, index) => (
+                  {categories && categories.map((category, index) => ( //museums && museum
                     <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
                   ))}
                 </Select>

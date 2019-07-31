@@ -48,7 +48,7 @@ class RoomsTable extends Component {
   };
 
   state = {
-    room: null,
+    rooms: null,
     roomId: null,
     postAction: null,
     dialogOpen: false,
@@ -96,19 +96,19 @@ class RoomsTable extends Component {
 
     switch(this.state.postAction) {
       case POSTACTIONSENUM.DELETE:
-        url = `/api/v1/room/${this.state.roomId}`;
+        url = `/api/v1/rooms/${this.state.roomId}`;
         options = {
           method: 'DELETE'
         }
         break;
       case POSTACTIONSENUM.SOFTDELETE:
-        url = `/api/v1/room/${this.state.roomId}?mode=softdelete`;
+        url = `/api/v1/rooms/${this.state.roomId}?mode=softdelete`;
         options = {
           method: 'DELETE'
         }
         break;
       case POSTACTIONSENUM.SOFTUNDELETE:
-        url = `/api/v1/room/${this.state.roomId}?mode=softundelete`;
+        url = `/api/v1/rooms/${this.state.roomId}?mode=softundelete`;
         options = {
           method: 'DELETE'
         }
@@ -119,14 +119,14 @@ class RoomsTable extends Component {
       .then(res => res.json())
       .then(results => {
         if(results.mode && results.mode === 'delete') {
-          this.loadRoom();
+          this.loadRooms();
         } else {
           const room = results.room;
-          const i = this.state.room.findIndex((obj, index, array) => {
+          const i = this.state.rooms.findIndex((obj, index, array) => {
             return obj._id === room._id;
           });
           const rooms = this.state.rooms;
-          room[i] = room;
+          rooms[i] = room;
   
           this.setState(prevState => ({
             ...prevState,
@@ -140,13 +140,13 @@ class RoomsTable extends Component {
   }
 
   componentWillMount() {
-    this.loadRoom();
+    this.loadRooms();
   }
 
-  loadRoom = () => {
-    fetch('/api/v1/room')
+  loadRooms = () => {
+    fetch('/api/v1/rooms')
       .then( response => response.json())
-      .then( item => this.setState({ room: item })); 
+      .then( item => this.setState({ rooms: item })); 
   }
 
   render() {
@@ -159,9 +159,7 @@ class RoomsTable extends Component {
           <Table className={classes.table} aria-labelledby="tableTitle">
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Synopsis</TableCell>
-                <TableCell>Body</TableCell>
+                <TableCell>Room</TableCell>
                 <TableCell>Created</TableCell>
                 <TableCell>Actions</TableCell>
               </TableRow>
@@ -170,12 +168,10 @@ class RoomsTable extends Component {
               {rooms && rooms.map( (room, index) => (
                 <TableRow key={room.id}>
                   <TableCell>{room.name}</TableCell>
-                  <TableCell>{room.museums_id}</TableCell>
-                  <TableCell>{room.room_number}</TableCell>
                   <TableCell>{room.created_at}</TableCell>
                   <TableCell>
                     <IconButton
-                      component={Link} to={ `/admin/room/${room.id}/edit`}>
+                      component={Link} to={ `/admin/rooms/${room.id}/edit`}>
                       <IconCreate />
                     </IconButton>
                     <IconButton

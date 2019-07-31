@@ -52,7 +52,7 @@ class PostForm extends Component {
     }
     
     state = {
-        categories: [],
+        categories: [], //museums
         post: { title: "", synopsis: "", body: "", categoryId: "", },
     };
 
@@ -72,13 +72,13 @@ class PostForm extends Component {
                 cache: 'default'
             };
 
-            const response = await fetch('/api/v1/categories', options);
+            const response = await fetch('/api/v1/categories', options); //museums
             console.log(response);
             const responseJson = await response.json();
             if (responseJson) {
                 this.setState(prevState => ({ 
                     ...prevState, 
-                    categories: responseJson 
+                    categories: responseJson //museums
                 }));
             }
         } catch(error) {
@@ -175,7 +175,7 @@ class PostForm extends Component {
                 <div className={classes.container}>
                     <Paper className={classes.paper}>
                         <Formik
-                            render={props => <Form {...props} categories={this.state.categories} />}
+                            render={props => <Form {...props} categories={this.state.categories} />} //museums
                             initialValues={values}
                             validationSchema={validationSchema}
                             onSubmit={(values, actions) => this.submit(values, actions)}

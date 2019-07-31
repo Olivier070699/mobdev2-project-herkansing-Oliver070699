@@ -159,20 +159,21 @@ class QuestionsTable extends Component {
           <Table className={classes.table} aria-labelledby="tableTitle">
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Synopsis</TableCell>
-                <TableCell>Body</TableCell>
-                <TableCell>Created</TableCell>
-                <TableCell>Actions</TableCell>
+                <TableCell>museum</TableCell>
+                <TableCell>room_number</TableCell>
+                <TableCell>question</TableCell>
+                <TableCell>answer</TableCell>
+                <TableCell>imageUrl</TableCell>
+                <TableCell>created_at</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {questions && questions.map( (question, index) => (
                 <TableRow key={question.id}>
-                  <TableCell>{question.name}</TableCell>
-                  <TableCell>{question.museums_id}</TableCell>
-                  <TableCell>{question.rooms_id}</TableCell>
+                  <TableCell>{question.parentMuseumId}</TableCell>
+                  <TableCell>{question.room}</TableCell>
                   <TableCell>{question.question}</TableCell>
+                  <TableCell>{question.answer}</TableCell>
                   <TableCell>{question.imageUrl}</TableCell>
                   <TableCell>{question.created_at}</TableCell>
                   <TableCell>

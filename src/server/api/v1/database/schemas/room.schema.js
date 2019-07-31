@@ -10,8 +10,6 @@ const RoomSchema = new Schema(
         slug: {
             type: String, lowercase: true, unique: true, required: true,
         },
-        museums_id: { type: Number, required: true },
-        room_number: { type: Number, required: true },
         published_at: { type: Date, required: false },
         deleted_at: { type: Date, required: false },
     },
@@ -25,7 +23,7 @@ const RoomSchema = new Schema(
 );
 
 RoomSchema.methods.slugify = function () {
-    this.slug = slug(this.title);
+    this.slug = slug(this.name);
 };
 
 RoomSchema.pre('validate', function (next) {
