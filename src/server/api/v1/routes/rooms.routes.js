@@ -2,10 +2,10 @@
 Import the internal libraries:
 - PostController
 */
-import { QuestionController } from '../controller';
+import { RoomsController } from '../controller';
 
-// Create instance of QuestionController otherwise you can't use it
-const questionController = new QuestionController();
+// Create instance of roomsController otherwise you can't use it
+const roomsController = new RoomsController();
 
 const initializeEndpoints = (parentRouter, authService) => {
     /**
@@ -21,7 +21,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: An array of posts
      */
-    parentRouter.get('/question', questionController.index);
+    parentRouter.get('/rooms', roomsController.index);
     /**
      * @swagger
      * /api/v1/posts/create:
@@ -35,7 +35,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Create post
      */
-    parentRouter.get('/question/create/', questionController.create);
+    parentRouter.get('/rooms/create/', roomsController.create);
     /**
      * @swagger
      * /api/v1/posts/{id}:
@@ -55,7 +55,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Get post by id
      */
-    parentRouter.get('/question/:id', questionController.show);
+    parentRouter.get('/rooms/:id', roomsController.show);
     /**
      * @swagger
      * /api/v1/posts:
@@ -74,7 +74,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Return saved post
      */
-    parentRouter.post('/question', questionController.store);
+    parentRouter.post('/rooms', roomsController.store);
     /**
      * @swagger
      * /api/v1/posts/{id}/edit:
@@ -94,7 +94,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Edit post by id
      */
-    parentRouter.get('/question/:id/edit', questionController.edit);
+    parentRouter.get('/rooms/:id/edit', roomsController.edit);
     /**
      * @swagger
      * /api/v1/posts/{id}:
@@ -118,7 +118,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Update post
      */
-    parentRouter.put('/question/:id', questionController.update);
+    parentRouter.put('/rooms/:id', roomsController.update);
     /**
      * @swagger
      * /api/v1/posts/{id}:
@@ -138,7 +138,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Delete post
      */
-    parentRouter.delete('/question/:id', questionController.destroy);
+    parentRouter.delete('/rooms/:id', roomsController.destroy);
 };
 
 export default initializeEndpoints;

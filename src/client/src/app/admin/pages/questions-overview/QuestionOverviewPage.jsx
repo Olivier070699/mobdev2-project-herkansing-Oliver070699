@@ -13,7 +13,7 @@ import { ContentLayout } from '../../layouts';
 Pages
 */
 import QuestionsTablePage from '../questions-table';
-import QuestionFormPage from '../question-form';
+import QuestionsFormPage from '../questions-form';
 
 const tabs = [
   { id: 'List', link: '/admin/questions' },
@@ -28,8 +28,8 @@ class QuestionsOverviewPage extends Component {
       <ContentLayout title="Questions Overview" tabs={tabs}>
         { children }
         <Route exact path="/admin/questions" component={ QuestionsTablePage }></Route>
-        <Route path="/admin/questions/create" component={ QuestionFormPage }></Route>
-        <Route path="/admin/questions/:id/edit" component={ QuestionFormPage }></Route>
+        <Route path="/admin/questions/create" component={ QuestionsFormPage }></Route>
+        <Route path="/admin/questions/:id/edit" component={ QuestionsFormPage }></Route>
       </ContentLayout>
     )
   }

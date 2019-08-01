@@ -23,7 +23,13 @@ Validation
 */
 const validationSchema = Yup.object(
 {
-    name: Yup.string("Enter a name").required("Title is required").min(10).max(128),
+    question: Yup.string("Enter a question").required("Title is required").min(10).max(128),
+    trueAnswer: Yup.string("Enter the right answer").required("Right answer is required").min(3).max(50),
+    falseAnswerOne: Yup.string("Enter a false answer").required("False answer is required").min(3).max(50),
+    falseAnswerTwo: Yup.string("Enter a false answer").required("False answer is required").min(3).max(50),
+    falseAnswerThree: Yup.string("Enter a false answer").required("False answer is required").min(3).max(50),
+    room: Yup.string("Enter the room").required("Room is required").min(1),
+    museumsId: Yup.string("Enter a museum").required("Museum is required").min(1),
 });
 
 /*
@@ -43,19 +49,43 @@ const styles = theme => ({
  }
 });
 
-class ColorForm extends Component {
+class QuestionForm extends Component {
     static propTypes = {
         classes: PropTypes.object.isRequired,
     }
     
     state = {
-        post: { name: "", },
+        museums: [], //museums
+        post: { question: "", trueAnswer: "", falseAnswerOne: "", falseAnswerTwo: "", falseAnswerThree: "", room: "", museumsId: "", },
     };
 
     componentWillMount() {
+        this.loadCategories();
         
         if (this.props.postId) {            
             this.loadPost(this.props.postId);
+        }
+    }
+
+    loadCategories = async () => {
+        try {
+            const options = {
+                method: 'GET',
+                mode: 'cors',
+                cache: 'default'
+            };
+
+            const response = await fetch('/api/v1/museums', options); //museums
+            console.log(response);
+            const responseJson = await response.json();
+            if (responseJson) {
+                this.setState(prevState => ({ 
+                    ...prevState, 
+                    museums: responseJson //museums, stond post
+                }));
+            }
+        } catch(error) {
+            console.log(error);
         }
     }
 
@@ -67,7 +97,7 @@ class ColorForm extends Component {
                 cache: 'default'
             };
 
-            const response = await fetch(`/api/v1/color/${postId}`, options);
+            const response = await fetch(`/api/v1/questions/${postId}`, options);
             const responseJson = await response.json();
             if (responseJson) {
                 this.setState(prevState => ({ 
@@ -104,7 +134,7 @@ class ColorForm extends Component {
                 cache: 'default'
             };
 
-            const response = await fetch('/api/v1/color', options);
+            const response = await fetch('/api/v1/questions', options);
             const responseJson = await response.json();
             if (responseJson) {
                 console.log(responseJson);
@@ -127,7 +157,7 @@ class ColorForm extends Component {
                 cache: 'default'
             };
 
-            const response = await fetch(`/api/v1/color/${postId}`, options);
+            const response = await fetch(`/api/v1/questions/${postId}`, options);
             const responseJson = await response.json();
             if (responseJson) {
                 console.log(responseJson);
@@ -148,7 +178,7 @@ class ColorForm extends Component {
                 <div className={classes.container}>
                     <Paper className={classes.paper}>
                         <Formik
-                            render={props => <Form {...props} categories={this.state.categories} />}
+                            render={props => <Form {...props} museums={this.state.museums} />} //museums
                             initialValues={values}
                             validationSchema={validationSchema}
                             onSubmit={(values, actions) => this.submit(values, actions)}
@@ -161,4 +191,4 @@ class ColorForm extends Component {
     }
 }
 
-export default withStyles(styles)(ColorForm);
+export default withStyles(styles)(QuestionForm);

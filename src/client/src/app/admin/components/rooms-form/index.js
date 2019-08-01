@@ -23,11 +23,7 @@ Validation
 */
 const validationSchema = Yup.object(
 {
-    museums_id: Yup.number("Enter a museum").required("Museum is required"),
-    room: Yup.number("Enter a room").required("room is required"),
-    question: Yup.string("Enter a question").required("Question is required").min(10),
-    answer: Yup.string("Enter the answer").required("Answer is required").min(3),
-    imageUrl: Yup.string("Enter a image").required(false),
+    name: Yup.string("Enter a name").required("Title is required").min(3).max(128),
 });
 
 /*
@@ -47,13 +43,13 @@ const styles = theme => ({
  }
 });
 
-class QuestionForm extends Component {
+class RoomForm extends Component {
     static propTypes = {
         classes: PropTypes.object.isRequired,
     }
     
     state = {
-        post: { parentMuseumId: "", room: "", question: "", answer: "", imageUrl: "", },
+        post: { name: "", },
     };
 
     componentWillMount() {
@@ -71,7 +67,7 @@ class QuestionForm extends Component {
                 cache: 'default'
             };
 
-            const response = await fetch(`/api/v1/question/${postId}`, options);
+            const response = await fetch(`/api/v1/rooms/${postId}`, options);
             const responseJson = await response.json();
             if (responseJson) {
                 this.setState(prevState => ({ 
@@ -108,7 +104,7 @@ class QuestionForm extends Component {
                 cache: 'default'
             };
 
-            const response = await fetch('/api/v1/question', options);
+            const response = await fetch('/api/v1/rooms', options);
             const responseJson = await response.json();
             if (responseJson) {
                 console.log(responseJson);
@@ -131,7 +127,7 @@ class QuestionForm extends Component {
                 cache: 'default'
             };
 
-            const response = await fetch(`/api/v1/question/${postId}`, options);
+            const response = await fetch(`/api/v1/rooms/${postId}`, options);
             const responseJson = await response.json();
             if (responseJson) {
                 console.log(responseJson);
@@ -165,4 +161,4 @@ class QuestionForm extends Component {
     }
 }
 
-export default withStyles(styles)(QuestionForm);
+export default withStyles(styles)(RoomForm);

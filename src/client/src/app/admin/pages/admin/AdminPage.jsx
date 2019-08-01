@@ -11,9 +11,9 @@ import BlogsOverviewPage from '../blogs-overview';
 import CategoriesOverviewPage from '../categories-overview';
 import PostsOverviewPage from '../posts-overview';
 import MuseumsOverviewPage from '../museums-overview';
-import QuestionsOverviewPage from '../questions-overview';
 import RoomsOverviewPage from '../rooms-overview';
 import ColorsOverviewPage from '../colors-overview';
+import QuestionsOverviewpage from '../questions-overview';
 
 class AdminPage extends Component {
   render() {
@@ -23,9 +23,9 @@ class AdminPage extends Component {
         <Route path="/admin/categories" component={ CategoriesOverviewPage }></Route>
         <Route path="/admin/posts" component={PostsOverviewPage}></Route>
         <Route path="/admin/museums" component={MuseumsOverviewPage}></Route>
-        <Route path="/admin/questions" component={QuestionsOverviewPage}></Route>
         <Route path="/admin/rooms" component={RoomsOverviewPage}></Route>
         <Route path="/admin/colors" component={ColorsOverviewPage}></Route>
+        <Route path="/admin/questions" component={QuestionsOverviewpage}></Route>
       </div>
     )
   }

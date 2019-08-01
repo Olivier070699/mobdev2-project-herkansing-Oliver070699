@@ -8,10 +8,10 @@ Import the internal libraries:
 - * from database
 - errorHandler
 */
-import { Question } from '../database';
+import { Questions } from '../database';
 import { APIError, handleAPIError } from '../../../utilities';
 
-class QuestionController {
+class QuestionsController {
     // List all the models
     index = async (req, res, next) => {
         try {
@@ -21,12 +21,12 @@ class QuestionController {
                 const options = {
                     page: parseInt(skip, 10) || 1,
                     limit: parseInt(limit, 10) || 10,
-                    populate: 'category',
+                    populate: 'museums',
                     sort: { created_at: -1 },
                 };
-                posts = await Question.paginate({}, options);
+                posts = await Questions.paginate({}, options);
             } else {
-                posts = await Question.find().populate('category').sort({ created_at: -1 }).exec();
+                posts = await Questions.find().populate('museums').sort({ created_at: -1 }).exec();
             }
 
             if (posts === undefined || posts === null) {
@@ -42,7 +42,7 @@ class QuestionController {
     show = async (req, res, next) => {
         try {
             const { id } = req.params;
-            const item = await Question.findById(id).exec();
+            const item = await Questions.findById(id).populate('museums').exec();
             if (item === undefined || item === null) {
                 throw new APIError(404, `Post with id: ${id} not found!`);
             }
@@ -55,7 +55,7 @@ class QuestionController {
     // ViewModel for Insert / Create
     create = (req, res) => {
         const vm = {
-            categories: [],
+            museums: [],
         };
         return res.status(200).json(vm);
     }
@@ -63,10 +63,13 @@ class QuestionController {
     // Store / Create the new model
     store = async (req, res, next) => {
         try {
-            const postCreate = new Question({
-                name: req.body.name,
-                synopsis: req.body.synopsis,
-                body: req.body.body,
+            const postCreate = new Questions({
+                trueAnswer: req.body.trueAnswer,
+                falseAnswerOne: req.body.falseAnswerOne,
+                falseAnswerTwo: req.body.falseAnswerTwo,
+                falseAnswerThree: req.body.falseAnswerThree,
+                room: req.body.room,
+                museumsId: req.body.museumsId
             });
             const post = await postCreate.save();
             return res.status(201).json(post);
@@ -80,7 +83,7 @@ class QuestionController {
         const { id } = req.params;
 
         try {
-            const post = await Question.findById(id).exec();
+            const post = await Questions.findById(id).exec();
 
             if (!post) {
                 throw new APIError(404, `Post with id: ${id} not found!`);
@@ -102,7 +105,7 @@ class QuestionController {
 
         try {
             const postUpdate = req.body;
-            const post = await Question.findOneAndUpdate({ _id: id }, postUpdate, { new: true }).exec();
+            const post = await Questions.findOneAndUpdate({ _id: id }, postUpdate, { new: true }).exec();
 
             if (!post) {
                 throw new APIError(404, `Post with id: ${id} not found!`);
@@ -122,10 +125,10 @@ class QuestionController {
 
             let { mode } = req.query;
             if (mode) {
-                post = await Question.findByIdAndUpdate({ _id: id }, { deleted_at: (mode === 'softdelete' ? Date.now() : null) }, { new: true });
+                post = await Questions.findByIdAndUpdate({ _id: id }, { deleted_at: (mode === 'softdelete' ? Date.now() : null) }, { new: true });
             } else {
                 mode = 'delete';
-                post = await Question.findOneAndRemove({ _id: id });
+                post = await Questions.findOneAndRemove({ _id: id });
             }
 
             if (!post) {
@@ -139,4 +142,4 @@ class QuestionController {
     }
 }
 
-export default QuestionController;
+export default QuestionsController;

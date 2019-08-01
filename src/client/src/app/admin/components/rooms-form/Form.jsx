@@ -50,7 +50,7 @@ class Form extends Component {
 
         return (
             <form
-                action = '/room'
+                action = '/rooms'
               onSubmit={(e) => {
                 this.props.handleSubmit(e);
               }}

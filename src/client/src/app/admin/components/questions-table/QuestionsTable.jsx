@@ -48,7 +48,7 @@ class QuestionsTable extends Component {
   };
 
   state = {
-    question: null,
+    questions: null,
     questionId: null,
     postAction: null,
     dialogOpen: false,
@@ -96,19 +96,19 @@ class QuestionsTable extends Component {
 
     switch(this.state.postAction) {
       case POSTACTIONSENUM.DELETE:
-        url = `/api/v1/question/${this.state.questionId}`;
+        url = `/api/v1/questions/${this.state.questionId}`;
         options = {
           method: 'DELETE'
         }
         break;
       case POSTACTIONSENUM.SOFTDELETE:
-        url = `/api/v1/question/${this.state.questionId}?mode=softdelete`;
+        url = `/api/v1/questions/${this.state.questionId}?mode=softdelete`;
         options = {
           method: 'DELETE'
         }
         break;
       case POSTACTIONSENUM.SOFTUNDELETE:
-        url = `/api/v1/question/${this.state.questionId}?mode=softundelete`;
+        url = `/api/v1/questions/${this.state.questionId}?mode=softundelete`;
         options = {
           method: 'DELETE'
         }
@@ -119,14 +119,14 @@ class QuestionsTable extends Component {
       .then(res => res.json())
       .then(results => {
         if(results.mode && results.mode === 'delete') {
-          this.loadQuestion();
+          this.loadQuestions();
         } else {
           const question = results.question;
           const i = this.state.questions.findIndex((obj, index, array) => {
             return obj._id === question._id;
           });
-          const questions = this.state.questions;
-          question[i] = question;
+          const questions = this.state.question;
+          questions[i] = question;
   
           this.setState(prevState => ({
             ...prevState,
@@ -140,13 +140,13 @@ class QuestionsTable extends Component {
   }
 
   componentWillMount() {
-    this.loadQuestion();
+    this.loadQuestions();
   }
 
-  loadQuestion = () => {
-    fetch('/api/v1/question')
+  loadQuestions = () => {
+    fetch('/api/v1/questions')
       .then( response => response.json())
-      .then( item => this.setState({ question: item })); 
+      .then( item => this.setState({ questions: item })); 
   }
 
   render() {
@@ -159,26 +159,30 @@ class QuestionsTable extends Component {
           <Table className={classes.table} aria-labelledby="tableTitle">
             <TableHead>
               <TableRow>
-                <TableCell>museum</TableCell>
-                <TableCell>room_number</TableCell>
-                <TableCell>question</TableCell>
-                <TableCell>answer</TableCell>
-                <TableCell>imageUrl</TableCell>
-                <TableCell>created_at</TableCell>
+                <TableCell>Question</TableCell>
+                <TableCell>Answer</TableCell>
+                <TableCell>Wrong 1</TableCell>
+                <TableCell>Wrong 2</TableCell>
+                <TableCell>Wrong 3</TableCell>
+                <TableCell>Room</TableCell>
+                <TableCell>Museum</TableCell>
+                <TableCell>Actions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {questions && questions.map( (question, index) => (
                 <TableRow key={question.id}>
-                  <TableCell>{question.parentMuseumId}</TableCell>
-                  <TableCell>{question.room}</TableCell>
                   <TableCell>{question.question}</TableCell>
-                  <TableCell>{question.answer}</TableCell>
-                  <TableCell>{question.imageUrl}</TableCell>
+                  <TableCell>{question.trueAnswer}</TableCell>
+                  <TableCell>{question.falseAnswerOne}</TableCell>
+                  <TableCell>{question.falseAnswerTwo}</TableCell>
+                  <TableCell>{question.falseAnswerThree}</TableCell>
+                  <TableCell>{question.room}</TableCell>
+                  <TableCell>{question.museums && question.museums.name}</TableCell>
                   <TableCell>{question.created_at}</TableCell>
                   <TableCell>
                     <IconButton
-                      component={Link} to={ `/admin/question/${question.id}/edit`}>
+                      component={Link} to={ `/admin/questions/${question.id}/edit`}>
                       <IconCreate />
                     </IconButton>
                     <IconButton

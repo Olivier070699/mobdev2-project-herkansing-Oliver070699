@@ -4,7 +4,7 @@ import slug from 'slug';
 
 const { Schema } = mongoose;
 
-const RoomSchema = new Schema(
+const RoomsSchema = new Schema(
     {
         name: { type: String, required: true, max: 128 },
         slug: {
@@ -22,18 +22,18 @@ const RoomSchema = new Schema(
     },
 );
 
-RoomSchema.methods.slugify = function () {
+RoomsSchema.methods.slugify = function () {
     this.slug = slug(this.name);
 };
 
-RoomSchema.pre('validate', function (next) {
+RoomsSchema.pre('validate', function (next) {
     if (!this.slug) {
         this.slugify();
     }
     return next();
 });
 
-RoomSchema.virtual('id').get(function () { return this._id; });
+RoomsSchema.virtual('id').get(function () { return this._id; });
 
-RoomSchema.plugin(mongoosePaginate);
-export default mongoose.model('Room', RoomSchema);
+RoomsSchema.plugin(mongoosePaginate);
+export default mongoose.model('Rooms', RoomsSchema);

@@ -4,10 +4,10 @@ import Category from './category.schema';
 import Post from './post.schema';
 import User from './user.schema';
 import Museums from './museums.schema';
-import Question from './question.schema';
 import Answer from './answer.schema';
-import Room from './room.schema';
-import Color from './color.schema';
+import Rooms from './rooms.schema';
+import Colors from './colors.schema';
+import Questions from './questions.schema';
 
 export {
     Blog,
@@ -15,8 +15,8 @@ export {
     Post,
     User,
     Museums,
-    Question,
     Answer,
-    Room,
-    Color,
+    Rooms,
+    Colors,
+    Questions,
 };

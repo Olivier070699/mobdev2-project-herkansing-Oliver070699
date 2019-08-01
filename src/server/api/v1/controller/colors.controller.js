@@ -8,10 +8,10 @@ Import the internal libraries:
 - * from database
 - errorHandler
 */
-import { Color } from '../database';
+import { Colors } from '../database';
 import { APIError, handleAPIError } from '../../../utilities';
 
-class ColorController {
+class ColorsController {
     // List all the models
     index = async (req, res, next) => {
         try {
@@ -24,9 +24,9 @@ class ColorController {
                     populate: 'category',
                     sort: { created_at: -1 },
                 };
-                posts = await Color.paginate({}, options);
+                posts = await Colors.paginate({}, options);
             } else {
-                posts = await Color.find().populate('category').sort({ created_at: -1 }).exec();
+                posts = await Colors.find().populate('category').sort({ created_at: -1 }).exec();
             }
 
             if (posts === undefined || posts === null) {
@@ -42,7 +42,7 @@ class ColorController {
     show = async (req, res, next) => {
         try {
             const { id } = req.params;
-            const item = await Color.findById(id).exec();
+            const item = await Colors.findById(id).exec();
             if (item === undefined || item === null) {
                 throw new APIError(404, `Post with id: ${id} not found!`);
             }
@@ -63,10 +63,8 @@ class ColorController {
     // Store / Create the new model
     store = async (req, res, next) => {
         try {
-            const postCreate = new Color({
+            const postCreate = new Colors({
                 name: req.body.name,
-                synopsis: req.body.synopsis,
-                body: req.body.body,
             });
             const post = await postCreate.save();
             return res.status(201).json(post);
@@ -80,7 +78,7 @@ class ColorController {
         const { id } = req.params;
 
         try {
-            const post = await Color.findById(id).exec();
+            const post = await Colors.findById(id).exec();
 
             if (!post) {
                 throw new APIError(404, `Post with id: ${id} not found!`);
@@ -102,7 +100,7 @@ class ColorController {
 
         try {
             const postUpdate = req.body;
-            const post = await Color.findOneAndUpdate({ _id: id }, postUpdate, { new: true }).exec();
+            const post = await Colors.findOneAndUpdate({ _id: id }, postUpdate, { new: true }).exec();
 
             if (!post) {
                 throw new APIError(404, `Post with id: ${id} not found!`);
@@ -122,10 +120,10 @@ class ColorController {
 
             let { mode } = req.query;
             if (mode) {
-                post = await Color.findByIdAndUpdate({ _id: id }, { deleted_at: (mode === 'softdelete' ? Date.now() : null) }, { new: true });
+                post = await Colors.findByIdAndUpdate({ _id: id }, { deleted_at: (mode === 'softdelete' ? Date.now() : null) }, { new: true });
             } else {
                 mode = 'delete';
-                post = await Color.findOneAndRemove({ _id: id });
+                post = await Colors.findOneAndRemove({ _id: id });
             }
 
             if (!post) {
@@ -139,4 +137,4 @@ class ColorController {
     }
 }
 
-export default ColorController;
+export default ColorsController;

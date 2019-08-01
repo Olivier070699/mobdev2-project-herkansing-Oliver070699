@@ -5,10 +5,10 @@ import CategoryController from './category.controller';
 import PostController from './post.controller';
 import UserController from './user.controller';
 import MuseumsController from './museums.controller';
-import QuestionController from './question.controller';
 import AnswerController from './answer.controller';
-import RoomController from './room.controller';
-import ColorController from './color.controller';
+import RoomsController from './rooms.controller';
+import ColorsController from './colors.controller';
+import QuestionsController from './questions.controller';
 
 export {
     AuthController,
@@ -17,8 +17,8 @@ export {
     PostController,
     UserController,
     MuseumsController,
-    QuestionController,
     AnswerController,
-    RoomController,
-    ColorController,
+    RoomsController,
+    ColorsController,
+    QuestionsController,
 };

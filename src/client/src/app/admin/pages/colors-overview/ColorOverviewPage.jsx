@@ -13,7 +13,7 @@ import { ContentLayout } from '../../layouts';
 Pages
 */
 import ColorsTablePage from '../colors-table';
-import ColorFormPage from '../color-form';
+import ColorsFormPage from '../colors-form';
 
 const tabs = [
   { id: 'List', link: '/admin/colors' },
@@ -28,8 +28,8 @@ class ColorsOverviewPage extends Component {
       <ContentLayout title="Colors Overview" tabs={tabs}>
         { children }
         <Route exact path="/admin/colors" component={ ColorsTablePage }></Route>
-        <Route path="/admin/colors/create" component={ ColorFormPage }></Route>
-        <Route path="/admin/colors/:id/edit" component={ ColorFormPage }></Route>
+        <Route path="/admin/colors/create" component={ ColorsFormPage }></Route>
+        <Route path="/admin/colors/:id/edit" component={ ColorsFormPage }></Route>
       </ContentLayout>
     )
   }

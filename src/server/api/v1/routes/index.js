@@ -17,9 +17,9 @@ import categoryRouter from './category.routes';
 import postRouter from './post.routes';
 import userRouter from './user.routes';
 import museumsRouter from './museums.routes';
-import questionRouter from './question.routes';
-import roomRouter from './room.routes';
-import colorRouter from './color.routes';
+import roomsRouter from './rooms.routes';
+import colorsRouter from './colors.routes';
+import questionsRouter from './questions.routes';
 
 // Initialize the AuthService
 const authService = new AuthService();
@@ -32,8 +32,8 @@ categoryRouter(apiV1Router, authService);
 postRouter(apiV1Router, authService);
 userRouter(apiV1Router, authService);
 museumsRouter(apiV1Router, authService);
-questionRouter(apiV1Router, authService);
-roomRouter(apiV1Router, authService);
-colorRouter(apiV1Router, authService);
+roomsRouter(apiV1Router, authService);
+colorsRouter(apiV1Router, authService);
+questionsRouter(apiV1Router, authService);
 
 export default apiV1Router;

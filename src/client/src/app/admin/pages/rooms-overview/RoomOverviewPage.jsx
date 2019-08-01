@@ -13,7 +13,7 @@ import { ContentLayout } from '../../layouts';
 Pages
 */
 import RoomsTablePage from '../rooms-table';
-import RoomsFormPage from '../room-form';
+import RoomsFormPage from '../rooms-form';
 
 const tabs = [
   { id: 'List', link: '/admin/rooms' },

@@ -2,10 +2,10 @@
 Import the internal libraries:
 - PostController
 */
-import { ColorController } from '../controller';
+import { QuestionsController } from '../controller';
 
-// Create instance of ColorController otherwise you can't use it
-const colorController = new ColorController();
+// Create instance of QuestionsController otherwise you can't use it
+const questionsController = new QuestionsController();
 
 const initializeEndpoints = (parentRouter, authService) => {
     /**
@@ -21,7 +21,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: An array of posts
      */
-    parentRouter.get('/color', colorController.index);
+    parentRouter.get('/questions', questionsController.index);
     /**
      * @swagger
      * /api/v1/posts/create:
@@ -35,7 +35,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Create post
      */
-    parentRouter.get('/color/create/', colorController.create);
+    parentRouter.get('/questions/create/', questionsController.create);
     /**
      * @swagger
      * /api/v1/posts/{id}:
@@ -55,7 +55,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Get post by id
      */
-    parentRouter.get('/color/:id', colorController.show);
+    parentRouter.get('/questions/:id', questionsController.show);
     /**
      * @swagger
      * /api/v1/posts:
@@ -74,7 +74,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Return saved post
      */
-    parentRouter.post('/color', colorController.store);
+    parentRouter.post('/questions', questionsController.store);
     /**
      * @swagger
      * /api/v1/posts/{id}/edit:
@@ -94,7 +94,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Edit post by id
      */
-    parentRouter.get('/color/:id/edit', colorController.edit);
+    parentRouter.get('/questions/:id/edit', questionsController.edit);
     /**
      * @swagger
      * /api/v1/posts/{id}:
@@ -118,7 +118,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Update post
      */
-    parentRouter.put('/color/:id', colorController.update);
+    parentRouter.put('/questions/:id', questionsController.update);
     /**
      * @swagger
      * /api/v1/posts/{id}:
@@ -138,7 +138,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Delete post
      */
-    parentRouter.delete('/color/:id', colorController.destroy);
+    parentRouter.delete('/questions/:id', questionsController.destroy);
 };
 
 export default initializeEndpoints;

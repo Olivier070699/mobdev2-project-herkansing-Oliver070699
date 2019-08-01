@@ -11,9 +11,9 @@ import Grid from '@material-ui/core/Grid';
 /*
 Components
 */
-import RoomForm from '../../components/room-form';
+import ColorForm from '../../components/colors-form';
 
-class RoomFormPage extends Component {
+class ColorFormPage extends Component {
   render() {
     const { id } = this.props.match.params;
 
@@ -21,9 +21,9 @@ class RoomFormPage extends Component {
       <Grid container spacing={24}>
           <Grid item xs={12}>
               {id ? (
-              <RoomForm postId={id} />
+              <ColorForm postId={id} />
               ) : (
-              <RoomForm />
+              <ColorForm />
               )}
           </Grid>
       </Grid>
@@ -31,4 +31,4 @@ class RoomFormPage extends Component {
   }
 }
 
-export default (RoomFormPage);
+export default (ColorFormPage);

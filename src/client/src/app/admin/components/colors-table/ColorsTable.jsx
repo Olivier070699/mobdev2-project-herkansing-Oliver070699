@@ -48,7 +48,7 @@ class ColorsTable extends Component {
   };
 
   state = {
-    color: null,
+    colors: null,
     colorId: null,
     postAction: null,
     dialogOpen: false,
@@ -119,14 +119,14 @@ class ColorsTable extends Component {
       .then(res => res.json())
       .then(results => {
         if(results.mode && results.mode === 'delete') {
-          this.loadColor();
+          this.loadColors();
         } else {
           const color = results.color;
           const i = this.state.colors.findIndex((obj, index, array) => {
             return obj._id === color._id;
           });
           const colors = this.state.colors;
-          color[i] = color;
+          colors[i] = color;
   
           this.setState(prevState => ({
             ...prevState,
@@ -140,13 +140,13 @@ class ColorsTable extends Component {
   }
 
   componentWillMount() {
-    this.loadColor();
+    this.loadColors();
   }
 
-  loadColor = () => {
+  loadColors = () => {
     fetch('/api/v1/colors')
       .then( response => response.json())
-      .then( item => this.setState({ color: item })); 
+      .then( item => this.setState({ colors: item })); 
   }
 
   render() {
@@ -159,7 +159,7 @@ class ColorsTable extends Component {
           <Table className={classes.table} aria-labelledby="tableTitle">
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
+                <TableCell>Hex Color Code</TableCell>
                 <TableCell>Created</TableCell>
                 <TableCell>Actions</TableCell>
               </TableRow>

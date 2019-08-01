@@ -8,10 +8,10 @@ Import the internal libraries:
 - * from database
 - errorHandler
 */
-import { Room } from '../database';
+import { Rooms } from '../database';
 import { APIError, handleAPIError } from '../../../utilities';
 
-class RoomController {
+class RoomsController {
     // List all the models
     index = async (req, res, next) => {
         try {
@@ -24,9 +24,9 @@ class RoomController {
                     populate: 'category',
                     sort: { created_at: -1 },
                 };
-                posts = await Room.paginate({}, options);
+                posts = await Rooms.paginate({}, options);
             } else {
-                posts = await Room.find().populate('category').sort({ created_at: -1 }).exec();
+                posts = await Rooms.find().populate('category').sort({ created_at: -1 }).exec();
             }
 
             if (posts === undefined || posts === null) {
@@ -42,7 +42,7 @@ class RoomController {
     show = async (req, res, next) => {
         try {
             const { id } = req.params;
-            const item = await Room.findById(id).exec();
+            const item = await Rooms.findById(id).exec();
             if (item === undefined || item === null) {
                 throw new APIError(404, `Post with id: ${id} not found!`);
             }
@@ -63,10 +63,8 @@ class RoomController {
     // Store / Create the new model
     store = async (req, res, next) => {
         try {
-            const postCreate = new Room({
+            const postCreate = new Rooms({
                 name: req.body.name,
-                synopsis: req.body.synopsis,
-                body: req.body.body,
             });
             const post = await postCreate.save();
             return res.status(201).json(post);
@@ -80,7 +78,7 @@ class RoomController {
         const { id } = req.params;
 
         try {
-            const post = await Room.findById(id).exec();
+            const post = await Rooms.findById(id).exec();
 
             if (!post) {
                 throw new APIError(404, `Post with id: ${id} not found!`);
@@ -102,7 +100,7 @@ class RoomController {
 
         try {
             const postUpdate = req.body;
-            const post = await Room.findOneAndUpdate({ _id: id }, postUpdate, { new: true }).exec();
+            const post = await Rooms.findOneAndUpdate({ _id: id }, postUpdate, { new: true }).exec();
 
             if (!post) {
                 throw new APIError(404, `Post with id: ${id} not found!`);
@@ -122,10 +120,10 @@ class RoomController {
 
             let { mode } = req.query;
             if (mode) {
-                post = await Room.findByIdAndUpdate({ _id: id }, { deleted_at: (mode === 'softdelete' ? Date.now() : null) }, { new: true });
+                post = await Rooms.findByIdAndUpdate({ _id: id }, { deleted_at: (mode === 'softdelete' ? Date.now() : null) }, { new: true });
             } else {
                 mode = 'delete';
-                post = await Room.findOneAndRemove({ _id: id });
+                post = await Rooms.findOneAndRemove({ _id: id });
             }
 
             if (!post) {
@@ -139,4 +137,4 @@ class RoomController {
     }
 }
 
-export default RoomController;
+export default RoomsController;

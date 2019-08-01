@@ -23,7 +23,7 @@ Validation
 */
 const validationSchema = Yup.object(
 {
-    name: Yup.string("Enter a name").required("Roomname is required").min(3).max(20),
+    name: Yup.string("Enter a name").required("Title is required").min(3).max(128),
 });
 
 /*
@@ -43,7 +43,7 @@ const styles = theme => ({
  }
 });
 
-class RoomForm extends Component {
+class ColorForm extends Component {
     static propTypes = {
         classes: PropTypes.object.isRequired,
     }
@@ -67,7 +67,7 @@ class RoomForm extends Component {
                 cache: 'default'
             };
 
-            const response = await fetch(`/api/v1/room/${postId}`, options);
+            const response = await fetch(`/api/v1/colors/${postId}`, options);
             const responseJson = await response.json();
             if (responseJson) {
                 this.setState(prevState => ({ 
@@ -104,7 +104,7 @@ class RoomForm extends Component {
                 cache: 'default'
             };
 
-            const response = await fetch('/api/v1/room', options);
+            const response = await fetch('/api/v1/colors', options);
             const responseJson = await response.json();
             if (responseJson) {
                 console.log(responseJson);
@@ -127,7 +127,7 @@ class RoomForm extends Component {
                 cache: 'default'
             };
 
-            const response = await fetch(`/api/v1/room/${postId}`, options);
+            const response = await fetch(`/api/v1/colors/${postId}`, options);
             const responseJson = await response.json();
             if (responseJson) {
                 console.log(responseJson);
@@ -161,4 +161,4 @@ class RoomForm extends Component {
     }
 }
 
-export default withStyles(styles)(RoomForm);
+export default withStyles(styles)(ColorForm);

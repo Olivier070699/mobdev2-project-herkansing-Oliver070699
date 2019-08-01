@@ -4,7 +4,7 @@ import slug from 'slug';
 
 const { Schema } = mongoose;
 
-const ColorSchema = new Schema(
+const ColorsSchema = new Schema(
     {
         name: { type: String, required: true, max: 128 },
         slug: {
@@ -22,18 +22,18 @@ const ColorSchema = new Schema(
     },
 );
 
-ColorSchema.methods.slugify = function () {
+ColorsSchema.methods.slugify = function () {
     this.slug = slug(this.name);
 };
 
-ColorSchema.pre('validate', function (next) {
+ColorsSchema.pre('validate', function (next) {
     if (!this.slug) {
         this.slugify();
     }
     return next();
 });
 
-ColorSchema.virtual('id').get(function () { return this._id; });
+ColorsSchema.virtual('id').get(function () { return this._id; });
 
-ColorSchema.plugin(mongoosePaginate);
-export default mongoose.model('Color', ColorSchema);
+ColorsSchema.plugin(mongoosePaginate);
+export default mongoose.model('Colors', ColorsSchema);
