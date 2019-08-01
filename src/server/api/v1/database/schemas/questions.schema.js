@@ -40,8 +40,8 @@ QuestionsSchema.pre('validate', function (next) {
 });
 
 QuestionsSchema.virtual('id').get(function () { return this._id; });
-QuestionsSchema.virtual('museums', {
-    ref: 'museums',
+QuestionsSchema.virtual('Museums', {
+    ref: 'Museums',
     localField: 'museumsId',
     foreignField: '_id',
     justOne: true,

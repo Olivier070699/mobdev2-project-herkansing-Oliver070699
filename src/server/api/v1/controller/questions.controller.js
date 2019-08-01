@@ -21,12 +21,12 @@ class QuestionsController {
                 const options = {
                     page: parseInt(skip, 10) || 1,
                     limit: parseInt(limit, 10) || 10,
-                    populate: 'museums',
+                    populate: 'categories',
                     sort: { created_at: -1 },
                 };
                 posts = await Questions.paginate({}, options);
             } else {
-                posts = await Questions.find().populate('museums').sort({ created_at: -1 }).exec();
+                posts = await Questions.find().populate('categories').sort({ created_at: -1 }).exec();
             }
 
             if (posts === undefined || posts === null) {
@@ -42,7 +42,7 @@ class QuestionsController {
     show = async (req, res, next) => {
         try {
             const { id } = req.params;
-            const item = await Questions.findById(id).populate('museums').exec();
+            const item = await Questions.findById(id).populate('categories').exec();
             if (item === undefined || item === null) {
                 throw new APIError(404, `Post with id: ${id} not found!`);
             }
@@ -55,7 +55,7 @@ class QuestionsController {
     // ViewModel for Insert / Create
     create = (req, res) => {
         const vm = {
-            museums: [],
+            categories: [],
         };
         return res.status(200).json(vm);
     }
@@ -64,12 +64,13 @@ class QuestionsController {
     store = async (req, res, next) => {
         try {
             const postCreate = new Questions({
+                question: req.body.question,
                 trueAnswer: req.body.trueAnswer,
                 falseAnswerOne: req.body.falseAnswerOne,
                 falseAnswerTwo: req.body.falseAnswerTwo,
                 falseAnswerThree: req.body.falseAnswerThree,
                 room: req.body.room,
-                museumsId: req.body.museumsId
+                museumsId: req.body.museumsId,
             });
             const post = await postCreate.save();
             return res.status(201).json(post);
