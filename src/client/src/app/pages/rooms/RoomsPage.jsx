@@ -9,21 +9,21 @@ Import internal libraries
 import Api from '../../services';
 
 
-class HomePage extends Component {
+class RoomsPage extends Component {
     state = {
-        museums: [],
+        rooms: [],
     };
 
     componentWillMount() {
-        this.loadMuseums();
+        this.loadRooms();
     }
 
-    loadMuseums = () => {
-        Api.findAllMuseums()
+    loadRooms = () => {
+        Api.findAllRooms()
             .then((data) => {
                 this.setState(prevState => ({
                     ...prevState,
-                    museums: data
+                    rooms: data
                 }));
             })
             .catch((error) => {
@@ -36,14 +36,13 @@ class HomePage extends Component {
     }
 
     render() {
-        const { museums } = this.state;
-        this.items = this.state.museums.map((item, key) => (
+        const { rooms } = this.state;
+        this.items = this.state.rooms.map((item, key) => (
             <div key={item.id}>
                 <h1>{item.name}</h1>
                 <p>{item.synopsis}</p>
                 <p>{item.body}</p>
-                <a href={"/rooms/"}>link</a>
-                {/* <a href={"/museums/"+item.id}>link</a> */}
+                <a href={"/questions/"+item.id}>link</a>
            </div> 
         ));
         return (
@@ -54,7 +53,7 @@ class HomePage extends Component {
                         <h2 className="section__title">Musea</h2>
                     </header>
 
-                    <div className="museumsContainer">
+                    <div className="roomsContainer">
                         {this.items}
                     </div>
 
@@ -67,4 +66,4 @@ class HomePage extends Component {
     }
 }
 
-export default (HomePage);
+export default (RoomsPage);

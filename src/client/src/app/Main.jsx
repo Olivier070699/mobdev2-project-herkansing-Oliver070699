@@ -24,6 +24,8 @@ import LoginPage from './pages/login';
 import NewsPage from './pages/news';
 import PostDetailPage from './pages/post-detail';
 import HomeDetail from './pages/home-detail';
+import RoomsPage from './pages/rooms';
+import QuestionDetailPage from './pages/question-detail';
 
 /*
 Import styling
@@ -35,13 +37,15 @@ class Main extends Component {
     return (
       <div className="App">
         <Switch>
-          <RouteWithLayout exact path='/' layout={ PageLayout } component={ HomePage }/>
-          <Redirect from="/home" to="/" />
+          <RouteWithLayout exact path='/museums' layout={PageLayout} component={HomePage} />
+          <RouteWithLayout path="/login" layout={ LoginLayout } component={ LoginPage }></RouteWithLayout>
+          <Redirect from="/" to="/login" />
           <RouteWithLayout exact path='/museums/:id' layout={ PageLayout } component={ HomeDetail }/>
           <RouteWithLayout exact path='/news' layout={ PageLayout } component={ NewsPage }/>
           <RouteWithLayout exact path='/news/:id' layout={ PageLayout } component={ PostDetailPage }/>
-          <RouteWithLayout path="/login" layout={ LoginLayout } component={ LoginPage }></RouteWithLayout>
-          <RouteWithLayout path="/admin" layout={ AdminLayout } component={ AdminPage }></RouteWithLayout>
+          <RouteWithLayout path="/admin" layout={AdminLayout} component={AdminPage}></RouteWithLayout>
+          <RouteWithLayout path="/rooms" layout={PageLayout} component={RoomsPage}></RouteWithLayout>
+          <RouteWithLayout path="/questions" layout={ PageLayout } component={ QuestionDetailPage }></RouteWithLayout>
         </Switch>
       </div>
     );

@@ -34,6 +34,24 @@ class Api {
         const response = await fetch(`${this.URL}/museums/${id}`);
         return await response.json();
     }
+
+    static findAllRooms = async (queryParams=null) => {
+        let url = `${this.URL}/rooms`;
+        if (queryParams !== null) {
+            url += (url.indexOf('?') === -1 ? '?' : '&') + this.queryParams(queryParams);
+        }   
+        const response = await fetch(`${url}`);
+        return await response.json();
+    }
+
+    static findAllQuestions = async (queryParams=null) => {
+        let url = `${this.URL}/questions`;
+        if (queryParams !== null) {
+            url += (url.indexOf('?') === -1 ? '?' : '&') + this.queryParams(queryParams);
+        }   
+        const response = await fetch(`${url}`);
+        return await response.json();
+    }
 }
 
 export default Api;
