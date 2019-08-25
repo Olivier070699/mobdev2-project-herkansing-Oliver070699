@@ -55,13 +55,13 @@ class QuestionDetailPage extends Component {
     }
 
     nextQuestion = () => {
-        console.log(this.state.items.length)
-        if(this.state.questionsCounter < this.state.items.length) {
+        let counter = this.state.questionsCounter
+        if(this.state.questionsCounter < this.state.items.length - 1) {
             this.setState({
-                questionsCounter: ++this.state.questionsCounter,
+                questionsCounter: ++counter,
+                selectedOption: "",
             })
         }
-        console.log(this.state.questionsCounter)
     }
 
     goToPostDetailPage = (id) => {
@@ -72,10 +72,9 @@ class QuestionDetailPage extends Component {
 
         let museum_id = localStorage.getItem("museum_id")
         let room = localStorage.getItem("room")
-
-        const { questions } = this.state;
+        this.state.items = []
         this.state.questions.forEach((element) => {
-            if(element.museumsId == museum_id && element.room == room) {
+            if(element.museumsId === museum_id && element.room === room) {
                 this.state.items.push(
                     <div key={element.id}>
                         <h1>{element.question}</h1>
