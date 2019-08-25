@@ -31,6 +31,11 @@ class HomePage extends Component {
             });
     }
 
+    storeMuseumId = (e) => {
+        let museum_id = e.target.id
+        localStorage.setItem("museum_id", museum_id)
+    }
+
     goToPostDetailPage = (id) => {
         this.props.history.push(`/news/${id}`);
     }
@@ -42,8 +47,8 @@ class HomePage extends Component {
                 <h1>{item.name}</h1>
                 <p>{item.synopsis}</p>
                 <p>{item.body}</p>
-                <a href={"/rooms/"}>link</a>
-                {/* <a href={"/museums/"+item.id}>link</a> */}
+                <a id={item.id} href={"/rooms/"} onClick={this.storeMuseumId} >link</a>
+                <a href={"/museums/"+item.id}>link</a>
            </div> 
         ));
         return (

@@ -21,6 +21,7 @@ class RoomsPage extends Component {
     loadRooms = () => {
         Api.findAllRooms()
             .then((data) => {
+                console.log(data)
                 this.setState(prevState => ({
                     ...prevState,
                     rooms: data
@@ -29,6 +30,11 @@ class RoomsPage extends Component {
             .catch((error) => {
                 console.log(error);
             });
+    }
+
+    storeRoom = (e) => {
+        let room = e.target.id
+        localStorage.setItem("room", room)
     }
 
     goToPostDetailPage = (id) => {
@@ -42,7 +48,7 @@ class RoomsPage extends Component {
                 <h1>{item.name}</h1>
                 <p>{item.synopsis}</p>
                 <p>{item.body}</p>
-                <a href={"/questions/"+item.id}>link</a>
+                <a id={item.name} href={"/questions/"+item.id} onClick={this.storeRoom} >link</a>
            </div> 
         ));
         return (
