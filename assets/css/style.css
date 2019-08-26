@@ -1,0 +1,101 @@
+*{
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* FONTS */
+@font-face{
+	font-family: 'circe light';
+	src:url('../fonts/CRC35.otf');
+}
+
+@font-face{
+	font-family: 'circe bold';
+	src:url('../fonts/CRC65.otf');
+}
+
+.heightHundred{
+    height: 100vh;
+    min-height: 300px;
+    position: relative;
+}
+
+.heightHundred div{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.yellow{
+    background-color: #FFDD59;
+}
+
+.blue{
+    background-color: #5856D6;
+}
+
+.orange{
+    background-color: #EE5732;
+}
+
+
+h2, h1{
+    font-family: 'circe bold';
+}
+
+p{
+    font-family: 'circe light';
+}
+
+body{
+    width: 100%;
+    max-width: 2000px;
+    min-width: 300px;
+    margin: 0 auto;
+}
+
+header{
+    text-align: center;
+    line-height: 0.8;
+}
+
+header h1{
+    color: black;
+    text-transform: uppercase;
+    font-size: 180px;
+}
+
+header p{
+    width: 90%;
+    min-width: 300px;
+    margin: 0 auto;
+    font-size: 50px;
+}
+
+main section h2{
+    color: black;
+    text-transform: uppercase;
+    font-size: 90px;
+    text-align: center;
+}
+
+main section figure{
+    width: 90%;
+    margin-left: 10%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main section #screens img{
+    width: 13%;
+    margin: 1.5%;
+}
+
+footer{
+    text-align: center;
+}
